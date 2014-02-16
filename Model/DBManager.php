@@ -23,7 +23,7 @@
 
 		public static function getInstance( $user, $passwd, $database, $server ){
 			if( self::$instance == NULL ){
-				self::$instance = new dbMan( $user, $passwd, $database, $server );
+				self::$instance = new DBManager( $user, $passwd, $database, $server );
 			}
 			return self::$instance;
 		}
