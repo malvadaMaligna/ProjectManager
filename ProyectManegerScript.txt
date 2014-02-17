@@ -1,0 +1,266 @@
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+CREATE SCHEMA IF NOT EXISTS `proyectManager` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE `proyectManager` ;
+
+-- -----------------------------------------------------
+-- Table `proyectManager`.`UserType`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `proyectManager`.`UserType` (
+  `idUserType` INT NOT NULL AUTO_INCREMENT,
+  `type` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`idUserType`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `proyectManager`.`User`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `proyectManager`.`User` (
+  `idUser` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NOT NULL,
+  `lastname` VARCHAR(200) NOT NULL,
+  `nickName` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `userType` INT NOT NULL,
+  `code` VARCHAR(20) NULL,
+  `regDate` DATE NOT NULL,
+  PRIMARY KEY (`idUser`),
+  INDEX `fk_User_UserType_idx` (`userType` ASC),
+  CONSTRAINT `fk_User_UserType`
+    FOREIGN KEY (`userType`)
+    REFERENCES `proyectManager`.`UserType` (`idUserType`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `proyectManager`.`ProyectStatus`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `proyectManager`.`ProyectStatus` (
+  `idProyectStatus` INT NOT NULL AUTO_INCREMENT,
+  `status` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`idProyectStatus`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `proyectManager`.`Proyect`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `proyectManager`.`Proyect` (
+  `idProyect` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(200) NOT NULL,
+  `description` TEXT NOT NULL,
+  `startDate` DATE NOT NULL,
+  `status` INT NOT NULL,
+  PRIMARY KEY (`idProyect`),
+  INDEX `fk_Proyect_ProyectStatus1_idx` (`status` ASC),
+  CONSTRAINT `fk_Proyect_ProyectStatus1`
+    FOREIGN KEY (`status`)
+    REFERENCES `proyectManager`.`ProyectStatus` (`idProyectStatus`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `proyectManager`.`CollaboratorType`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `proyectManager`.`CollaboratorType` (
+  `idCollaboratorType` INT NOT NULL AUTO_INCREMENT,
+  `type` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`idCollaboratorType`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `proyectManager`.`Collaborators`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `proyectManager`.`Collaborators` (
+  `idUser` INT NOT NULL,
+  `idProyect` INT NOT NULL,
+  `rol` INT NOT NULL,
+  INDEX `fk_Collaborators_User1_idx` (`idUser` ASC),
+  INDEX `fk_Collaborators_Proyect1_idx` (`idProyect` ASC),
+  INDEX `fk_Collaborators_CollaboratorType1_idx` (`rol` ASC),
+  CONSTRAINT `fk_Collaborators_User1`
+    FOREIGN KEY (`idUser`)
+    REFERENCES `proyectManager`.`User` (`idUser`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Collaborators_Proyect1`
+    FOREIGN KEY (`idProyect`)
+    REFERENCES `proyectManager`.`Proyect` (`idProyect`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Collaborators_CollaboratorType1`
+    FOREIGN KEY (`rol`)
+    REFERENCES `proyectManager`.`CollaboratorType` (`idCollaboratorType`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `proyectManager`.`ArticleType`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `proyectManager`.`ArticleType` (
+  `idArticleType` INT NOT NULL AUTO_INCREMENT,
+  `type` VARCHAR(200) NOT NULL,
+  PRIMARY KEY (`idArticleType`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `proyectManager`.`Article`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `proyectManager`.`Article` (
+  `idArticle` INT NOT NULL AUTO_INCREMENT,
+  `title` TEXT NOT NULL,
+  `content` TEXT NOT NULL,
+  `idProyect` INT NOT NULL,
+  `articleType` INT NOT NULL,
+  `author` INT NOT NULL,
+  PRIMARY KEY (`idArticle`),
+  INDEX `fk_Article_Proyect1_idx` (`idProyect` ASC),
+  INDEX `fk_Article_ArticleType1_idx` (`articleType` ASC),
+  INDEX `fk_Article_User1_idx` (`author` ASC),
+  CONSTRAINT `fk_Article_Proyect1`
+    FOREIGN KEY (`idProyect`)
+    REFERENCES `proyectManager`.`Proyect` (`idProyect`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Article_ArticleType1`
+    FOREIGN KEY (`articleType`)
+    REFERENCES `proyectManager`.`ArticleType` (`idArticleType`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Article_User1`
+    FOREIGN KEY (`author`)
+    REFERENCES `proyectManager`.`User` (`idUser`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `proyectManager`.`BlogEntry`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `proyectManager`.`BlogEntry` (
+  `idBlogEntry` INT NOT NULL AUTO_INCREMENT,
+  `idProyect` INT NOT NULL,
+  `date` DATE NOT NULL,
+  `title` TEXT NOT NULL,
+  `content` TEXT NOT NULL,
+  `idUser` INT NOT NULL,
+  PRIMARY KEY (`idBlogEntry`),
+  INDEX `fk_BlogEntry_Proyect1_idx` (`idProyect` ASC),
+  INDEX `fk_BlogEntry_User1_idx` (`idUser` ASC),
+  CONSTRAINT `fk_BlogEntry_Proyect1`
+    FOREIGN KEY (`idProyect`)
+    REFERENCES `proyectManager`.`Proyect` (`idProyect`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_BlogEntry_User1`
+    FOREIGN KEY (`idUser`)
+    REFERENCES `proyectManager`.`User` (`idUser`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `proyectManager`.`UserContact`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `proyectManager`.`UserContact` (
+  `idUser` INT NOT NULL,
+  `facebook` VARCHAR(200) NULL,
+  `twitter` VARCHAR(200) NULL,
+  `github` VARCHAR(200) NULL,
+  `google+` VARCHAR(200) NULL,
+  `cellphone` VARCHAR(45) NULL,
+  INDEX `fk_UserContact_User1_idx` (`idUser` ASC),
+  CONSTRAINT `fk_UserContact_User1`
+    FOREIGN KEY (`idUser`)
+    REFERENCES `proyectManager`.`User` (`idUser`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `proyectManager`.`PriorityType`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `proyectManager`.`PriorityType` (
+  `idPriorityType` INT NOT NULL AUTO_INCREMENT,
+  `priority` VARCHAR(100) NOT NULL,
+  `priorityValue` INT NOT NULL,
+  PRIMARY KEY (`idPriorityType`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `proyectManager`.`StatusType`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `proyectManager`.`StatusType` (
+  `idStatusType` INT NOT NULL AUTO_INCREMENT,
+  `status` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`idStatusType`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `proyectManager`.`Task`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `proyectManager`.`Task` (
+  `idTask` INT NOT NULL AUTO_INCREMENT,
+  `idProyect` INT NOT NULL,
+  `idUser` INT NOT NULL,
+  `initDate` DATE NOT NULL,
+  `endDate` DATE NOT NULL,
+  `deathLine` DATE NULL,
+  `priority` INT NOT NULL,
+  `description` TEXT NOT NULL,
+  `idOwner` INT NOT NULL,
+  `status` INT NOT NULL,
+  PRIMARY KEY (`idTask`),
+  INDEX `fk_Task_Proyect1_idx` (`idProyect` ASC),
+  INDEX `fk_Task_User1_idx` (`idUser` ASC),
+  INDEX `fk_Task_PriorityType1_idx` (`priority` ASC),
+  INDEX `fk_Task_User2_idx` (`idOwner` ASC),
+  INDEX `fk_Task_StatusType1_idx` (`status` ASC),
+  CONSTRAINT `fk_Task_Proyect1`
+    FOREIGN KEY (`idProyect`)
+    REFERENCES `proyectManager`.`Proyect` (`idProyect`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Task_User1`
+    FOREIGN KEY (`idUser`)
+    REFERENCES `proyectManager`.`User` (`idUser`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Task_PriorityType1`
+    FOREIGN KEY (`priority`)
+    REFERENCES `proyectManager`.`PriorityType` (`idPriorityType`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Task_User2`
+    FOREIGN KEY (`idOwner`)
+    REFERENCES `proyectManager`.`User` (`idUser`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Task_StatusType1`
+    FOREIGN KEY (`status`)
+    REFERENCES `proyectManager`.`StatusType` (`idStatusType`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
