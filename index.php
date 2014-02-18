@@ -18,7 +18,7 @@
 		case "index":
 			require './Controller/IndexCtrl.php';
 			$index = new IndexCtrl();
-			$index = run( $dbCon );
+			$index -> run( $dbCon );
 			break;
 		default:
 			//Send to main page
