@@ -38,5 +38,9 @@
 	margin-top: 8px;
 }
 .loginButton{
+	background-color: #CC0066;	
+}
+.loginButton:hover{
 	background-color: #CC0066;
 }
+
