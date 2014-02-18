@@ -29,7 +29,7 @@
 		}
 
 		public function connect( ){
-			$this -> connection = mysqli( $this -> server, $this -> user, $this -> passwd, $this -> database );
+			$this -> connection = new mysqli( $this -> server, $this -> user, $this -> passwd, $this -> database );
 		}
 
 		public function closeConnection( ){
