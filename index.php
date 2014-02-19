@@ -21,7 +21,10 @@
 			$index -> run( $dbCon );
 			break;
 		case "blog":
-			
+			require_once './Controller/BlogCtrl.php';
+			$blog = new BlogCtrl();
+			$blog -> run( $dbCon );
+			break;
 		default:
 			//Send to main page
 	}
