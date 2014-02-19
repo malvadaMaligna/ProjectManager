@@ -113,3 +113,20 @@ a:hover{
 .dead-space2{
 	height:200px;
 }
+.img-small{
+	margin-bottom: 5%;
+	margin-top: 5%;
+	margin-right: 30%;
+	margin-left: 30%;
+	width: 20%;
+	heigth: 20%;
+}
+.img-medium{
+	margin-bottom: 5%;
+	margin-top: 5%;
+	margin-right: 30%;
+	margin-left: 30%;
+	width: 40%;
+	heigth: 20%;
+	
+}
