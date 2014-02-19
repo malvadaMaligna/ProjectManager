@@ -106,3 +106,10 @@ a:hover{
 .navbar-margin{
 	padding-left: 15px;
 }
+
+.dead-space{
+	height:500px;
+}
+.dead-space2{
+	height:200px;
+}
