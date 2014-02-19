@@ -104,7 +104,7 @@ a:hover{
 	margin-bottom: 50px;
 }
 .navbar-margin{
-	padding-left: 15px;
+	padding"Controller"-left: 15px;
 }
 
 .dead-space{
@@ -119,6 +119,10 @@ a:hover{
 	margin-right: 30%;
 	margin-left: 30%;
 	width: 20%;
+	
+	
+	
+	
 	heigth: 20%;
 }
 .img-medium{
