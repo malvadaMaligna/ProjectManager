@@ -35,8 +35,12 @@
 						$key = $row[ 0 ];
 						if( $key == $passwd ){
 							$_SESSION[ "user" ] = $user;
+							header( "Location: ./index.php?control=index&action=index" );
+							//Set data to session
 						}
-						header( "Location: ./index.php?control=index&action=index" );
+						else{
+							//BadLogin
+						}
 					}
 					else{
 						//Send to error
