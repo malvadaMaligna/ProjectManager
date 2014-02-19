@@ -5,6 +5,7 @@
 			session_start();
 			switch ( $_GET[ "action" ]){
 				case "index":
+					require_once './Model/IndexMdl.php';
 					$header = file_get_contents( "./View/Header.html" );
 					$content = file_get_contents( "./View/MainPage.html" );
 					$footer = file_get_contents( "./View/Footer.html" );
@@ -30,6 +31,19 @@
 						$header = str_replace( "{user}", $navbarContent , $header );
 						$header = str_replace( "{userOpt}", $navbarOpt , $header );
 					}
+					
+					//Get the latest blog entry
+					$index = new IndexMdl( $dbCon );
+					$result = $index -> getLastBlogEntry( );
+					$row = $result -> fetch_row();
+					$blogDate = $row[ 0 ];
+					$blogTitle = $row[ 1 ];
+					$blogContent = $row[ 2 ];
+					$blogUser = $row[ 3 ];
+					$blogProyect = $row[ 4 ];
+					
+					echo $blogContent;
+					
 					echo $header;
 					echo $content;
 					echo $footer;
