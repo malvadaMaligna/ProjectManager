@@ -36,7 +36,7 @@
 					$index = new IndexMdl( $dbCon );
 					$result = $index -> getLastBlogEntry( );
 					//TODO validate if result is null
-					if( !$result -> num_rows == 0 ){
+					if( !( $result -> num_rows ) == 0 ){
 						$row = $result -> fetch_row();
 						$blogDate = $row[ 0 ];
 						$blogTitle = $row[ 1 ];
