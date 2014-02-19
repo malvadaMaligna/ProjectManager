@@ -35,14 +35,25 @@
 					//Get the latest blog entry
 					$index = new IndexMdl( $dbCon );
 					$result = $index -> getLastBlogEntry( );
-					$row = $result -> fetch_row();
-					$blogDate = $row[ 0 ];
-					$blogTitle = $row[ 1 ];
-					$blogContent = $row[ 2 ];
-					$blogUser = $row[ 3 ];
-					$blogProyect = $row[ 4 ];
-					
-					echo $blogContent;
+					//TODO validate if result is null
+					if( !$result -> num_rows == 0 ){
+						$row = $result -> fetch_row();
+						$blogDate = $row[ 0 ];
+						$blogTitle = $row[ 1 ];
+						$blogContent = $row[ 2 ];
+						$blogUser = $row[ 3 ];
+						$blogProyect = $row[ 4 ];
+						
+						$blogEntry = "<h3>".$blogTitle."</h3>";
+						$blogEntry = $blogEntry."<div class=\"blog-data\"><div class=\"blog-date\"><em>".$blogDate."</em></div><div class=\"blog-author\">By <a href=\"#\">".$blogUser."</a></div></div>";
+						$blogEntry = $blogEntry."<div class=\"cleaner\"></div>";
+						$blogEntry = $blogEntry."<div class=\"blog-content\">".$blogContent."</div>";
+						$blogEntry = $blogEntry."<p>Related to <a href=\"#\">".$blogProyect."</a></p>";					
+						$content = str_replace( "{blogEntry}", $blogEntry , $content );
+					}
+					else{
+						$content = str_replace( "{blogEntry}", "<h3>There's no data to show</h3>" , $content );
+					}
 					
 					echo $header;
 					echo $content;
