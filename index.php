@@ -20,6 +20,8 @@
 			$index = new IndexCtrl();
 			$index -> run( $dbCon );
 			break;
+		case "blog":
+			
 		default:
 			//Send to main page
 	}
