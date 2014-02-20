@@ -25,10 +25,15 @@
 										</li>";
 						$header = str_replace( "{user}", $navbarContent , $header );
 						$header = str_replace( "{userOpt}", $navbarOpt , $header );
+						$content = str_replace( "{user}", $_SESSION[ "user" ], $content );
+						
+						$dateT = getdate() ;
+						
+						$content = str_replace( "{date}", $dateT["year"]."-".$dateT["mon"]."-".$dateT["mday"], $content );
+						
 						echo $header;
 						echo $content;
 						echo $footer;
-						
 					}
 					else{
 						//Send to error
