@@ -34,8 +34,7 @@
 					
 					//Get the latest blog entry
 					$index = new IndexMdl( $dbCon );
-					//$result = $index -> getLastBlogEntry( );
-					$result = 0;
+					$result = $index -> getLastBlogEntry( );
 					//TODO validate if result is null
 					if( !( $result -> num_rows ) == 0 ){
 						$row = $result -> fetch_row();
