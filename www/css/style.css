@@ -46,10 +46,11 @@ a:hover{
 	margin-bottom: 8px;
 	margin-top: 8px;
 }
-.loginButton{
-	background-color: #CC0066;	
+.login-button{
+	background-color: #CC0066;
+	border-top: 1px solid #101010;	
 }
-.loginButton:hover{
+.login-button:hover{
 	background-color: #CC0066;
 }
 .cleaner{
@@ -145,15 +146,22 @@ a:hover{
 	padding: 3%;
 	margin-bottom: 40px;
 }
-<<<<<<< HEAD
 .entry-title{
 	marging-top: 10%;
-	marging-bottom: 5%;
+	marging-bottom: 30%%;
 	
 }
-=======
-
 .general-info{
 	margin-bottom: 40px;
 }
->>>>>>> branch 'master' of https://github.com/malvadaMaligna/ProjectManager
+.form-entry-blog{
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+.content-panel{
+	margin-left: 14%;
+	margin-right: 14%; 
+}
+.with-margin-bottom{
+	margin-bottom: 40px;
+}

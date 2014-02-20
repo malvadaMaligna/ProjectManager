@@ -1,8 +1,35 @@
-		<div class="conteiner">
-			<form action="">
-				<label>Title:</label>
-				<input type="text"/ class="title-blog">
-				<textarea rows="50" cols="100" class=""></textarea>
-				<button class="btn btn-lg btn-primary btn-block loginButton" type="submit">Previus View</button>
+		<div class="container">
+			<div class="general-info">
+				<h2>New Blog Entry</h2>
+				<p>Here you can add a new blog entry for your project</p>
+			</div>
+			<form action="" class="form-entry-blog" role="form-group">
+				<div class="form-group">
+					<label for="">Title</label>
+					<input type="text" class="form-control" placeholder="Title here...">
+					<p class="help-block">Choose a Great Title For Your Blog Entry</p>
+				</div>
+				<div class="form-group">
+					<label>Entry Edition</label>
+					<textarea class="form-control" ></textarea>
+				</div>
+				<button class="btn btn-primary login-button" type="submit">Preview</button>
 			</form>
+			<div class="content-box content-panel">
+				<h3 id="titleEntryBlog"></h3>
+				<div class="blog-data">
+					<div class="blog-date">
+						<em id="dateEntryBlog"></em>
+					</div>
+					<div class="blog-author">
+						By <a href="#" id="authorEntryBlog"></a>
+					</div>
+					<div class="cleaner"></div>
+					<div class="blog-content" id="contentEntryBlog">
+					</div>
+				</div>
+			</div>
+			<div class="with-margin-bottom">
+				<button class="btn btn-primary login-button" type="submit">Add Entry</button>
+			</div>
 		</div>
