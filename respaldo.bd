@@ -1,0 +1,392 @@
+-- MySQL dump 10.13  Distrib 5.6.14, for Win32 (x86)
+--
+-- Host: localhost    Database: projectManager
+-- ------------------------------------------------------
+-- Server version	5.6.14
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `article`
+--
+
+DROP TABLE IF EXISTS `article`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `article` (
+  `idArticle` int(11) NOT NULL AUTO_INCREMENT,
+  `title` text NOT NULL,
+  `content` text NOT NULL,
+  `idProject` int(11) NOT NULL,
+  `articleType` int(11) NOT NULL,
+  `author` int(11) NOT NULL,
+  PRIMARY KEY (`idArticle`),
+  KEY `fk_Article_ArticleType1_idx` (`articleType`),
+  KEY `fk_Article_Project1_idx` (`idProject`),
+  CONSTRAINT `fk_Article_ArticleType1` FOREIGN KEY (`articleType`) REFERENCES `articletype` (`idArticleType`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Article_Project1` FOREIGN KEY (`idProject`) REFERENCES `project` (`idProject`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `article`
+--
+
+LOCK TABLES `article` WRITE;
+/*!40000 ALTER TABLE `article` DISABLE KEYS */;
+/*!40000 ALTER TABLE `article` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `articletype`
+--
+
+DROP TABLE IF EXISTS `articletype`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `articletype` (
+  `idArticleType` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(200) NOT NULL,
+  PRIMARY KEY (`idArticleType`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `articletype`
+--
+
+LOCK TABLES `articletype` WRITE;
+/*!40000 ALTER TABLE `articletype` DISABLE KEYS */;
+/*!40000 ALTER TABLE `articletype` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `blogentry`
+--
+
+DROP TABLE IF EXISTS `blogentry`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `blogentry` (
+  `idBlogEntry` int(11) NOT NULL AUTO_INCREMENT,
+  `idProject` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `title` text NOT NULL,
+  `content` text NOT NULL,
+  `idUser` int(11) NOT NULL,
+  PRIMARY KEY (`idBlogEntry`),
+  KEY `fk_BlogEntry_User1_idx` (`idUser`),
+  KEY `fk_BlogEntry_Project1_idx` (`idProject`),
+  CONSTRAINT `fk_BlogEntry_Project1` FOREIGN KEY (`idProject`) REFERENCES `project` (`idProject`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_BlogEntry_User1` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `blogentry`
+--
+
+LOCK TABLES `blogentry` WRITE;
+/*!40000 ALTER TABLE `blogentry` DISABLE KEYS */;
+INSERT INTO `blogentry` VALUES (1,2,'2014-02-19','This is a test blog entry for a test project','<p>Hi I\'m glad to say that you can add ( in phpmyadmin ) blog entries for a project!!!!</p>\n\nI have nothing else to say, let\'s work.',1),(3,2,'2014-02-18','Another Blog Entry Example','<p>Here I\'m going to use some other elements like:</p>\r\n<pre><code>Example code block</code></pre>\r\n<p>Morbi porttitor, ligula at ullamcorper malesuada, tortor sapien auctor orci, sit amet tincidunt enim ipsum ut leo. Donec at enim ac arcu facilisis molestie congue non nunc. In eu quam eget est feugiat bibendum. Mauris cursus odio sapien. Phasellus iaculis urna imperdiet velit laoreet tempor. Donec id commodo velit. In eros diam, tempor sed vulputate in, molestie eget diam. Fusce vitae viverra orci, vel rhoncus lorem. Quisque at tincidunt massa. Nam a varius nulla, sed sollicitudin metus. Cras aliquam quis nisi sed semper. Nunc ullamcorper augue enim, eu lacinia enim sagittis non. Donec vitae magna tincidunt nisl consequat porta. Donec feugiat volutpat odio eget iaculis. Pellentesque feugiat tellus sit amet eleifend posuere.</p>',1);
+/*!40000 ALTER TABLE `blogentry` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `collaborators`
+--
+
+DROP TABLE IF EXISTS `collaborators`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `collaborators` (
+  `idUser` int(11) NOT NULL,
+  `idProject` int(11) NOT NULL,
+  `rol` int(11) NOT NULL,
+  KEY `fk_Collaborators_UserContact1_idx` (`idUser`),
+  KEY `fk_Collaborators_Project1_idx` (`idProject`),
+  KEY `fk_Collaborators_CollaboratorType1_idx` (`rol`),
+  CONSTRAINT `fk_Collaborators_CollaboratorType1` FOREIGN KEY (`rol`) REFERENCES `collaboratortype` (`idCollaboratorType`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Collaborators_Project1` FOREIGN KEY (`idProject`) REFERENCES `project` (`idProject`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Collaborators_UserContact1` FOREIGN KEY (`idUser`) REFERENCES `usercontact` (`idUser`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `collaborators`
+--
+
+LOCK TABLES `collaborators` WRITE;
+/*!40000 ALTER TABLE `collaborators` DISABLE KEYS */;
+/*!40000 ALTER TABLE `collaborators` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `collaboratortype`
+--
+
+DROP TABLE IF EXISTS `collaboratortype`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `collaboratortype` (
+  `idCollaboratorType` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(100) NOT NULL,
+  PRIMARY KEY (`idCollaboratorType`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `collaboratortype`
+--
+
+LOCK TABLES `collaboratortype` WRITE;
+/*!40000 ALTER TABLE `collaboratortype` DISABLE KEYS */;
+INSERT INTO `collaboratortype` VALUES (1,'Leader'),(2,'Collaborator');
+/*!40000 ALTER TABLE `collaboratortype` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `prioritytype`
+--
+
+DROP TABLE IF EXISTS `prioritytype`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `prioritytype` (
+  `idPriorityType` int(11) NOT NULL AUTO_INCREMENT,
+  `priority` varchar(100) NOT NULL,
+  `priorityValue` int(11) NOT NULL,
+  PRIMARY KEY (`idPriorityType`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `prioritytype`
+--
+
+LOCK TABLES `prioritytype` WRITE;
+/*!40000 ALTER TABLE `prioritytype` DISABLE KEYS */;
+/*!40000 ALTER TABLE `prioritytype` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `project`
+--
+
+DROP TABLE IF EXISTS `project`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `project` (
+  `idProject` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) NOT NULL,
+  `description` text NOT NULL,
+  `startDate` date NOT NULL,
+  `status` int(11) NOT NULL,
+  PRIMARY KEY (`idProject`),
+  KEY `fk_Project_ProjectStatus1_idx` (`status`),
+  CONSTRAINT `fk_Project_ProjectStatus1` FOREIGN KEY (`status`) REFERENCES `projectstatus` (`idProjectStatus`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `project`
+--
+
+LOCK TABLES `project` WRITE;
+/*!40000 ALTER TABLE `project` DISABLE KEYS */;
+INSERT INTO `project` VALUES (2,'Test Project','Project for testing website','2014-02-19',1);
+/*!40000 ALTER TABLE `project` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `projectstatus`
+--
+
+DROP TABLE IF EXISTS `projectstatus`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `projectstatus` (
+  `idProjectStatus` int(11) NOT NULL AUTO_INCREMENT,
+  `status` varchar(100) NOT NULL,
+  PRIMARY KEY (`idProjectStatus`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `projectstatus`
+--
+
+LOCK TABLES `projectstatus` WRITE;
+/*!40000 ALTER TABLE `projectstatus` DISABLE KEYS */;
+INSERT INTO `projectstatus` VALUES (1,'In Progress'),(2,'Finished');
+/*!40000 ALTER TABLE `projectstatus` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `statustype`
+--
+
+DROP TABLE IF EXISTS `statustype`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `statustype` (
+  `idStatusType` int(11) NOT NULL AUTO_INCREMENT,
+  `status` varchar(100) NOT NULL,
+  PRIMARY KEY (`idStatusType`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `statustype`
+--
+
+LOCK TABLES `statustype` WRITE;
+/*!40000 ALTER TABLE `statustype` DISABLE KEYS */;
+/*!40000 ALTER TABLE `statustype` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `task`
+--
+
+DROP TABLE IF EXISTS `task`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `task` (
+  `idTask` int(11) NOT NULL AUTO_INCREMENT,
+  `idProject` int(11) NOT NULL,
+  `idUser` int(11) NOT NULL,
+  `initDate` date NOT NULL,
+  `endDate` date NOT NULL,
+  `deathLine` date DEFAULT NULL,
+  `priority` int(11) NOT NULL,
+  `description` text NOT NULL,
+  `idOwner` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  PRIMARY KEY (`idTask`),
+  KEY `fk_Task_Project1_idx` (`idProject`),
+  KEY `fk_Task_PriorityType1_idx` (`priority`),
+  KEY `fk_Task_StatusType1_idx` (`status`),
+  KEY `fk_Task_User1_idx` (`idOwner`),
+  KEY `fk_Task_User2_idx` (`idUser`),
+  CONSTRAINT `fk_Task_PriorityType1` FOREIGN KEY (`priority`) REFERENCES `prioritytype` (`idPriorityType`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Task_Project1` FOREIGN KEY (`idProject`) REFERENCES `project` (`idProject`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Task_StatusType1` FOREIGN KEY (`status`) REFERENCES `statustype` (`idStatusType`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Task_User1` FOREIGN KEY (`idOwner`) REFERENCES `user` (`idUser`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Task_User2` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `task`
+--
+
+LOCK TABLES `task` WRITE;
+/*!40000 ALTER TABLE `task` DISABLE KEYS */;
+/*!40000 ALTER TABLE `task` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `idUser` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `lastname` varchar(200) NOT NULL,
+  `nickName` varchar(45) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `userType` int(11) NOT NULL,
+  `code` varchar(20) DEFAULT NULL,
+  `regDate` date NOT NULL,
+  PRIMARY KEY (`idUser`),
+  KEY `fk_User_UserType_idx` (`userType`),
+  CONSTRAINT `fk_User_UserType` FOREIGN KEY (`userType`) REFERENCES `usertype` (`idUserType`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'Cuauhtemoc','Herrera Muñoz','Seifer','966a220aee300548a880fc6db6ee4ae5d02f7bee','seifer.ch@gmail.com',1,'207453132','2014-02-19'),(2,'Gema Victoria','Aguilar Martinez','MalvadaMaligna','cedf035b7910d1b1be9bc556bd32d5b0b639a88d','malvada.maligna@gmail.com',1,'210681359','2014-02-19');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usercontact`
+--
+
+DROP TABLE IF EXISTS `usercontact`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usercontact` (
+  `idUser` int(11) NOT NULL,
+  `facebook` varchar(200) DEFAULT NULL,
+  `twitter` varchar(200) DEFAULT NULL,
+  `github` varchar(200) DEFAULT NULL,
+  `google+` varchar(200) DEFAULT NULL,
+  `cellphone` varchar(45) DEFAULT NULL,
+  KEY `fk_UserContact_User1_idx` (`idUser`),
+  CONSTRAINT `fk_UserContact_User1` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usercontact`
+--
+
+LOCK TABLES `usercontact` WRITE;
+/*!40000 ALTER TABLE `usercontact` DISABLE KEYS */;
+/*!40000 ALTER TABLE `usercontact` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usertype`
+--
+
+DROP TABLE IF EXISTS `usertype`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usertype` (
+  `idUserType` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(100) NOT NULL,
+  PRIMARY KEY (`idUserType`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usertype`
+--
+
+LOCK TABLES `usertype` WRITE;
+/*!40000 ALTER TABLE `usertype` DISABLE KEYS */;
+INSERT INTO `usertype` VALUES (1,'ADMINISTRATOR'),(2,'TEACHER'),(5,'ALUMN'),(6,'USERX');
+/*!40000 ALTER TABLE `usertype` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2014-02-24 11:01:28

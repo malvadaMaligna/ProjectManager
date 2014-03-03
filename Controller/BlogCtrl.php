@@ -5,7 +5,7 @@
 		public function run( $dbCon ){
 			session_start();
 			switch ( $_GET[ "action" ]){
-				case "addEntry":
+				case "newEntry":
 					if( isset( $_GET[ "pjtid" ] ) ){
 						//Validate session and relation project-user
 						require_once './Model/BlogMdl.php';
@@ -28,17 +28,83 @@
 						$content = str_replace( "{user}", $_SESSION[ "user" ], $content );
 						
 						$dateT = getdate() ;
-						
 						$content = str_replace( "{date}", $dateT["year"]."-".$dateT["mon"]."-".$dateT["mday"], $content );
+						$content = str_replace( "{pjtid}",  $_GET[ "pjtid" ], $content );
 						
 						echo $header;
 						echo $content;
 						echo $footer;
+						
 					}
 					else{
 						//Send to error
 					}
 					break;
+				
+				case "addEntry":
+					if( isset( $_SESSION[ "user" ]) and isset(  $_GET[ "pjtid" ] ) ){
+						
+						$user = $_SESSION[ "idUser" ];
+						
+						$title = $_POST[ "Blogtitle" ];
+						$contentEntry = $_POST[ "textAreaContent" ];
+						
+						
+						//echo $user;
+						//echo $title;
+						//echo $contentEntry;
+						
+						
+						date_default_timezone_set('Mexico/General'); 
+						
+						$current_date = date('d/m/Y == H:i:s');
+						
+						echo $_GET[ "pjtid" ];
+						echo $user;
+						echo $title;
+						echo $contentEntry;
+						echo $current_date;
+						
+						
+						
+						
+						require_once './Model/BlogMdl.php';
+// 						$header = file_get_contents("./View/Header.html");
+// 						$content = file_get_contents("./View/Blog.html");
+// 						$footer = file_get_contents("./View/Footer.html");
+							
+						$blog = new BlogMdl($dbCon);
+						$result = $blog -> setBlogEntry( $user, $_GET[ "pjtid" ], $current_date, $title, $contentEntry);
+						
+						echo $user;
+						echo $title;
+						echo $contentEntry;
+						echo $current_date;
+						
+						header( "Location: ./index.php?control=blog&action=showProjectBlog" );
+						
+					} else {
+						//error
+					}
+					break;
+					
+				case "showProjectBlog":
+					if ( isset( $_GET[ "user" ]) and isset(  $_GET[ "pjtid" ] ) ){
+						
+						require_once './Model/BlogMdl.php';
+						$header = file_get_contents("./View/Header.html");
+						$content = file_get_contents("./View/Blog.html");
+						$footer = file_get_contents("./View/Footer.html");
+										
+						$blog = new BlogMdl($dbCon);
+						$result = $blog -> getProjectBlog();
+						
+					} else {
+						
+						//error
+					}
+					
+					
 				default:
 					
 			}

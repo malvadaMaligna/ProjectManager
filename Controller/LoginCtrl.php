@@ -31,10 +31,12 @@
 						$user = $_POST[ "user" ];
 						$passwd = sha1( $_POST[ "passwd" ] );
 						$result = $login -> authenticate( $user );
-						$row = $result -> fetch_row( );
-						$key = $row[ 0 ];
+						$row = $result -> fetch_row( );	// conviertes el result en un array
+						$key = $row[ 0 ];	//	res del query
+						$idUser = $row[ 1 ];
 						if( $key == $passwd ){
 							$_SESSION[ "user" ] = $user;
+							$_SESSION[ "idUser" ] = $idUser;
 							header( "Location: ./index.php?control=index&action=index" );
 							//Set data to session
 						}

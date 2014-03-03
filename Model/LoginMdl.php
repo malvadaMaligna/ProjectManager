@@ -8,7 +8,7 @@
 		}
 		
 		public function authenticate( $user ){
-			$query = "SELECT u.password FROM User AS u WHERE u.nickName = \"$user\"";
+			$query = "SELECT u.password, u.idUser FROM User AS u WHERE u.nickName = \"$user\"";
 			$result = $this -> connection -> query( $query ) or die( "DB Error: LoginMdl.authenticate: Error " );
 			return $result;
 		}
