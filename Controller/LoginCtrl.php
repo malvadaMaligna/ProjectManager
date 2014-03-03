@@ -36,7 +36,7 @@
 						$idUser = $row[ 1 ];
 						if( $key == $passwd ){
 							$_SESSION[ "user" ] = $user;
-							$_SESSION[ "idUser" ] = $idUser;
+							$_SESSION[ "idUser" ] = $idUser;			
 							header( "Location: ./index.php?control=index&action=index" );
 							//Set data to session
 						}

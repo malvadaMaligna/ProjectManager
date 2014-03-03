@@ -164,3 +164,35 @@ a:hover{
 .with-margin-bottom{
 	margin-bottom: 40px;
 }
+@media (max-width: @screen-xs-max) { <!-- -->
+	.projectBlogContent{
+		width: 70%;
+	}	
+	.projectBlogItems{
+		 
+	}
+}
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { 
+	.projectBlogContent{
+		width: 80%;
+	}
+	.projectBlogItems{
+	
+	}	
+}
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max) { 
+	.projectBlogContent{
+		width: 90%;
+	}
+	.projectBlogItems{
+	
+	}	
+}
+@media (min-width: @screen-lg-min) {  
+	.projectBlogContent{
+		width: 100%;
+	}	
+	.projectBlogItems{
+		width: 100%;
+	}
+}
