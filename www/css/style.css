@@ -5,6 +5,7 @@
 	background-color: #101010;
 	border-top: 1px solid #e5e5e5;
 	float: bottom;
+	margin-top: 40px;
 }
 
 a{
@@ -58,7 +59,6 @@ a:hover{
 
 .carousel {
   height: 350px;
-  margin-bottom: 60px;
 }
 
 .carousel-caption {
@@ -80,31 +80,13 @@ a:hover{
 .navbar-no-magin{
 	margin-bottom: 0;
 }
-
-.left-panel{
-	width: 25%;
-	float: left;
-	margin-right: 3%;
-	background-color: #eee;
-}
-
-.right-panel{
-	width: 70%;
-	float: left;
-}
-
-.container-margin{
-	margin-bottom: 50px;
-	margin-top: 50px;
-}
-
 .content-box{
 	background-color: #eee;
 	padding: 4%;
-	margin-bottom: 50px;
+	margin-bottom: 40px;
 }
 .navbar-margin{
-	padding"Controller"-left: 15px;
+	padding-left: 15px;
 }
 
 .dead-space{
@@ -164,35 +146,127 @@ a:hover{
 .with-margin-bottom{
 	margin-bottom: 40px;
 }
-@media (max-width: @screen-xs-max) { <!-- -->
-	.projectBlogContent{
-		width: 70%;
-	}	
-	.projectBlogItems{
-		 
-	}
+.content-color{
+	background-color: #eee;
 }
-@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { 
-	.projectBlogContent{
-		width: 80%;
-	}
-	.projectBlogItems{
-	
-	}	
-}
-@media (min-width: @screen-md-min) and (max-width: @screen-md-max) { 
-	.projectBlogContent{
-		width: 90%;
-	}
-	.projectBlogItems{
-	
-	}	
-}
-@media (min-width: @screen-lg-min) {  
-	.projectBlogContent{
+
+@media (max-width: 768px) { <!-- -->
+	.left-panel-1{
+		margin-top: 20px;
 		width: 100%;
-	}	
-	.projectBlogItems{
+		float: none;
+	}
+	.right-panel-1{
+		margin-top: 20px;
 		width: 100%;
+		float: none;
+	}
+	.left-panel-2{
+		margin-top: 20px;
+		width: 100%;
+		float: none;
+	}
+	.right-panel-2{
+		margin-top: 20px;
+		width: 100%;
+		float: none;
+	}
+	.c-panel{
+		margin-right: auto;
+		margin-left: auto;
+		padding-left: 15px;
+		padding-right: 15px;
+		margin-top: 20px;
+	}
+}
+@media (min-width: 768px ) and (max-width: 992px ) { 
+	.left-panel-1{
+		margin-top: 20px;
+		width: 100%;
+		float: none;
+	}
+	.right-panel-1{
+		margin-top: 20px;
+		width: 100%;
+		float: none;
+	}
+	.left-panel-2{
+		margin-top: 20px;
+		width: 100%;
+		float: none;
+	}
+	.right-panel-2{
+		margin-top: 20px;
+		width: 100%;
+		float: none;
+	}
+	.c-panel{
+		margin-right: auto;
+		margin-left: auto;
+		padding-left: 15px;
+		padding-right: 15px;
+		margin-top: 20px;
+	}
+}
+@media (min-width: 992px ) and (max-width: 1200px ) { 
+	.left-panel-1{
+		margin-top: 40px;
+		width: 67%;
+		float: left;
+		margin-right: 3%;
+	}
+	.right-panel-1{
+		margin-top: 40px;
+		width: 27%;
+		float: left;
+	}
+	.left-panel-2{
+		margin-top: 40px;
+		width: 27%;
+		float: left;
+	}
+	.right-panel-2{
+		margin-top: 40px;
+		width: 67%;
+		float: right;
+		margin-right: 3%;
+	}
+	.c-panel{
+		margin-right: auto;
+		margin-left: auto;
+		padding-left: 15px;
+		padding-right: 15px;
+		margin-top: 40px;
+	}
+}
+@media (min-width: 1200px ) {  
+	.left-panel-1{
+		margin-top: 40px;
+		width: 67%;
+		float: left;
+		margin-right: 3%;
+	}
+	.right-panel-1{
+		margin-top: 40px;
+		width: 27%;
+		float: left;
+	}
+	.left-panel-2{
+		margin-top: 40px;
+		width: 27%;
+		float: left;
+	}
+	.right-panel-2{
+		margin-top: 40px;
+		width: 67%;
+		float: right;
+		margin-right: 3%;
+	}
+	.c-panel{
+		margin-right: auto;
+		margin-left: auto;
+		padding-left: 15px;
+		padding-right: 15px;
+		margin-top: 40px;
 	}
 }

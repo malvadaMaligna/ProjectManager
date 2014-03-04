@@ -59,6 +59,36 @@
 					echo $content;
 					echo $footer;
 					break;
+					
+				case "test1":
+					$header = file_get_contents( "./View/Header.html" );
+					$content = file_get_contents( "./View/test1.html" );
+					$footer = file_get_contents( "./View/Footer.html" );
+					
+					echo $header;
+					echo $content;
+					echo $footer;
+					break;
+				
+				case "test2":
+					$header = file_get_contents( "./View/Header.html" );
+					$content = file_get_contents( "./View/test2.html" );
+					$footer = file_get_contents( "./View/Footer.html" );
+						
+					echo $header;
+					echo $content;
+					echo $footer;
+					break;
+					
+				case "test3":
+					$header = file_get_contents( "./View/Header.html" );
+					$content = file_get_contents( "./View/test3.html" );
+					$footer = file_get_contents( "./View/Footer.html" );
+				
+					echo $header;
+					echo $content;
+					echo $footer;
+					break;
 				default:
 					//Send to 404 Error
 			} 
