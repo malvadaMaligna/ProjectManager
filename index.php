@@ -25,6 +25,10 @@
 			$blog = new BlogCtrl();
 			$blog -> run( $dbCon );
 			break;
+		case "user":
+			require_once './Controller/UserCtrl.php';
+			$user = new UserCtrl();
+			$user -> run( $dbCon );
 		default:
 			//Send to main page
 	}
