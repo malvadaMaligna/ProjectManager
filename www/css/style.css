@@ -90,10 +90,16 @@ a:hover{
 }
 
 .dead-space{
-	height:500px;
+	height: 500px;
 }
 .dead-space2{
-	height:200px;
+	height: 200px;
+}
+.dead-space-login{
+	height: 200px;
+}
+.dead-space-user-register{
+	height: 150px;
 }
 .img-small{
 	margin-bottom: 5%;
@@ -148,6 +154,23 @@ a:hover{
 }
 .content-color{
 	background-color: #eee;
+}
+.input-pair{
+	float: left;
+	margin-right: 30px;
+	margin-bottom: 10px;
+}
+.register-label{
+	width: 80px;
+}
+.register-legend{
+	color: #999;
+}
+.register-legend-x{
+	color: #CC0066;
+}
+.float-right{
+	float: right;
 }
 
 @media (max-width: 768px) { <!-- -->

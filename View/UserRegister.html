@@ -1,44 +1,61 @@
 		<div class="container">
+			<div class="dead-space-user-register visible-lg"></div>
 			<div class="c-panel">
 			<form action="">
 				<fieldset>
-					<legend>User Data</legend>
-						<label>Name:</label>
-						<input type="text" name="name" id="name">
-						<label>Last Name:</label>
-						<input type="text" name="lastName" id="lastName">
-						<label>Nick Name:</label>
-						<input type="text" name="nickName" id="nickName">
-						<label>Password:</label>
-						<input type="text" name="password" id="password">
-						<label>E-mail:</label>
-						<input type="text" name="email" id="email">
-						<label>Code:</label>
-						<input type="text" name="code" id="code">
+					<legend class="register-legend"><h3 class="register-legend">User Data</h3></legend>
+						<div class="input-pair">
+							<label class="register-label">Name:</label>
+							<input type="text" name="name" id="name" >
+						</div>
+						<div class="input-pair">
+							<label class="register-label">Last Name:</label>
+							<input type="text" name="lastName" id="lastName">
+						</div>
+						<div class="input-pair">
+							<label class="register-label">Nick Name:</label>
+							<input type="text" name="nickName" id="nickName">
+						</div>
+						<div class="input-pair">
+							<label class="register-label">E-mail:</label>
+							<input type="text" name="email" id="email" placeholder="helloWord@gmail.com" required>
+						</div>
+						<div class="input-pair">
+							<label class="register-label">Code:</label>
+							<input type="text" name="code" id="code">
+						</div>
 						<!-- fechaaa desde ctrl -->
-						<label>User Type</label>
-						<select name="userType" id="userType">
-							<option value="1">Administrator</option>
-							<option value="2">Teacher</option>
-							<option value="3">Alumn</option>
-							<option value="4">Guest</option>
-						</select>
-						<label>Password:</label>
-						<input type="text" name="password" id="password">
+						<!-- tipo de usuario setearlo con guest o alumn -->
 				</fieldset>
 				<fieldset>
-					<legend>User Contact</legend>
-						<label>Facebook:</label>
+					<legend class="register-legend"><h3 class="register-legend">User Contact</h3></legend>
+					<div class="input-pair">
+						<label class="register-label">Facebook:</label>
 						<input type="text" name="fb" id="fb">
-						<label>Twitter:</label>
+					</div>
+					<div class="input-pair">
+						<label class="register-label">Twitter:</label>
 						<input type="text" name="tw" id="tw">
-						<label>Github:</label>
+					</div>	
+					<div class="input-pair">
+						<label class="register-label">Github:</label>
 						<input type="text" name="git" id="git">
-						<label>Google+:</label>
+					</div>
+					<div class="input-pair">
+						<label class="register-label">Google+:</label>
 						<input type="text" name="google" id="google">
-						<label>Cell Phone:</label>
+					</div>	
+					<div class="input-pair">
+						<label class="register-label">Cell Phone:</label>
 						<input type="text" name="cel" id="cel">
-				</fieldset>	
+					</div>
+					<div class="input-pair">
+						<label class="register-label">Password:</label>
+						<input type="text" name="password" id="password" placeholder="MyPassword911" required>
+					</div>
+				</fieldset>
+				<button class="btn btn-primary login-button btn-lg float-right" type="submit">Register</button>	
 			</form>	
 			</div>
+			<div class="dead-space-user-register visible-lg"></div>
 		</div>
