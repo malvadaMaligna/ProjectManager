@@ -6,7 +6,7 @@
 			session_start();
 			switch ( $_GET[ "action" ]){
 				case "newEntry":
-					if( isset( $_GET[ "pjtid" ] ) ){
+					if( isset( $_SESSION[ "user" ]) and isset( $_GET[ "pjtid" ] ) ){
 						//Validate session and relation project-user
 						require_once './Model/BlogMdl.php';
 						$header = file_get_contents("./View/Header.html");

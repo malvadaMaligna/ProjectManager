@@ -8,15 +8,15 @@
 		}
 		
 		//TODO funciones query
-		public function setUser(){
-			$query = "INSERT INTO user ( name, lastname, nickName, password, email, userType, code, regDate ) VALUES ( \"".$date."\", ) ";
-			$result = $this -> connection -> query( $query ) or die( "DB Error: BlogMdl.setEntryBlog: Error " );
+		public function setUser( $name, $lastname, $nickName, $password, $email, $userType, $code, $regDate){
+			$query = "INSERT INTO user ( name, lastname, nickName, password, email, userType, code, regDate ) VALUES ( \"".$name."\", \"".$lastname."\", \"".$nickName."\", \"".$password."\", \"".$email."\", $userType, \"".$code."\",\"".$regDate."\" ) ";
+			$result = $this -> connection -> query( $query ) or die( "DB Error: UserMdl.setEntryBlog: Error " );
 			return $result;
 		}
 		
-		public function setUserContact(){
-			$query = "INSERT INTO usercontact ( cellphone, facebook, github, google+, twitter, idUser ) VALUES ( ) ";
-			$result = $this -> connection -> query( $query ) or die( "DB Error: BlogMdl.setEntryBlog: Error " );
+		public function setUserContact( $cellphone, $facebook, $github, $google, $twitter, $idUser ){
+			$query = "INSERT INTO usercontact ( cellphone, facebook, github, google+, twitter, idUser ) VALUES ( \"".$cellphone."\",\"".$facebook."\",\"".$github."\",\"".$google."\",\"".$twitter."\", $idUser ) ";
+			$result = $this -> connection -> query( $query ) or die( "DB Error: UserMdl.setEntryBlog: Error " );
 			return $result;
 		}
 	}
