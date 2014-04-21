@@ -61,7 +61,7 @@
 				case "userContactRegister":
 					if( isset( $_SESSION[ "idUser" ]) ){
 						require_once './Model/UserMdl.php';
-							
+							//bdskbfklsbfkls
 						
 						$fb = $_POST[ "fb" ];
 						$tw = $_POST[ "tw" ];
