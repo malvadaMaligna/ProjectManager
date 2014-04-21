@@ -10,7 +10,7 @@
 		
 		//TODO funciones query
 		public function setBlogEntry( $iduser, $idProject, $date, $title, $content ){
-			$query = "INSERT INTO BlogEntry ( iduser, idProject, date, title, content ) VALUES ( $idProject, $iduser, \"".$date."\", \"".$title."\", \"".$content."\" ) ";
+			$query = "INSERT INTO BlogEntry ( iduser, idProject, date, title, content ) VALUES ( $iduser, $idProject, \"".$date."\", \"".$title."\", \"".$content."\" ) ";
 			$result = $this -> connection -> query( $query ) or die( "DB Error: BlogMdl.setEntryBlog: Error " );
 			return $result;
 		}

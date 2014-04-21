@@ -30,14 +30,21 @@
 					$dateT = getdate() ;
 						
 					$current_date = $dateT["year"]."-".$dateT["mon"]."-".$dateT["mday"];
-						
-					$user = new UserMdl($dbCon);
-					$result = $user -> setUser( $name, $lastName, $nickName, $password, $email, $userType, $code, $current_date );
 					
-					$_SESSION[ "idUser" ] = $dbCon -> getLastId();
-					echo $_SESSION[ "idUser" ];
-					//echo $dbCon -> getLastId();
-					header( "Location: ./index.php?control=user&action=newUserContact" );
+					if( $name != null and $lastName != null and $nickName != null and $password != null 
+						and $email != null and $userType != null and $code != null and $current_date != null ){
+						$user = new UserMdl($dbCon);
+						$result = $user -> setUser( $name, $lastName, $nickName, $password, $email, $userType, $code, $current_date );
+							
+						$_SESSION[ "idUser" ] = $dbCon -> getLastId();
+						echo $_SESSION[ "idUser" ];
+						//echo $dbCon -> getLastId();
+						header( "Location: ./index.php?control=user&action=newUserContact" );
+					}else{
+						header( "Location: ./index.php?control=index&action=errorBD" );
+					}
+						
+					
 					break;
 				case "newUserContact":
 			
