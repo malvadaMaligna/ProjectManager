@@ -62,7 +62,7 @@
 					if( isset( $_SESSION[ "idUser" ]) ){
 						require_once './Model/UserMdl.php';
 							//bdskbfklsbfkls
-						
+						//bskfhalskvnjls
 						$fb = $_POST[ "fb" ];
 						$tw = $_POST[ "tw" ];
 						$git = $_POST[ "git" ];
