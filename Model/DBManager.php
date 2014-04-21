@@ -12,6 +12,7 @@
 		private $database;
 		private $server;
 		private $connection;
+		
 
 		public function __construct( $user, $passwd, $database, $server ){
 			$this -> server = $server;
@@ -39,6 +40,10 @@
 		public function query( $query ){
 			$result = $this -> connection -> query( $query );
 			return $result;
+		}
+		
+		public function getLastId( ){
+			return $this -> connection -> insert_id;
 		}
 	}
 ?>

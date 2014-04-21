@@ -15,10 +15,11 @@
 		}
 		
 		public function setUserContact( $cellphone, $facebook, $github, $google, $twitter, $idUser ){
-			$query = "INSERT INTO usercontact ( cellphone, facebook, github, google+, twitter, idUser ) VALUES ( \"".$cellphone."\",\"".$facebook."\",\"".$github."\",\"".$google."\",\"".$twitter."\", $idUser ) ";
-			$result = $this -> connection -> query( $query ) or die( "DB Error: UserMdl.setEntryBlog: Error " );
+			$query = "INSERT INTO usercontact ( cellphone, facebook, github, google, twitter, idUser ) VALUES ( \"".$cellphone."\",\"".$facebook."\",\"".$github."\",\"".$google."\",\"".$twitter."\", $idUser ) ";
+			$result = $this -> connection -> query( $query ) or die( "DB Error: UserMdl.se<zx<zx<zx<zx<zx<zx<zx<zx<zx<zx<zx<zx<zx<zxtEntryBlog: Error " );
 			return $result;
 		}
 	}
 
 ?>
+
