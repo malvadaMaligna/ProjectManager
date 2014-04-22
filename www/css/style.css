@@ -85,6 +85,17 @@ a:hover{
 	padding: 4%;
 	margin-bottom: 40px;
 }
+
+.content-box-blog-usr{
+	background-color: #FFE0F0;
+	padding-top: 4%;
+	padding-bottom: 4%;
+	padding-right: 4%;
+	padding-left: 8%;
+	margin-bottom: 10px;
+	border-right: 4px solid #CC0066;
+}
+
 .navbar-margin{
 	padding-left: 15px;
 }
@@ -232,6 +243,10 @@ a:hover{
 	}
 }
 @media (min-width: 992px ) and (max-width: 1200px ) { 
+	.blog-usr{
+	margin-top: 42%;
+	}
+	
 	.left-panel-1{
 		margin-top: 40px;
 		width: 67%;
@@ -263,6 +278,9 @@ a:hover{
 	}
 }
 @media (min-width: 1200px ) {  
+	.blog-usr{
+	margin-top: 42%;
+	}
 	.left-panel-1{
 		margin-top: 40px;
 		width: 67%;

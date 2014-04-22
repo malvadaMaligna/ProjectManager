@@ -61,8 +61,7 @@
 				case "userContactRegister":
 					if( isset( $_SESSION[ "idUser" ]) ){
 						require_once './Model/UserMdl.php';
-							//bdskbfklsbfkls
-						//bskfhalskvnjls
+				
 						$fb = $_POST[ "fb" ];
 						$tw = $_POST[ "tw" ];
 						$git = $_POST[ "git" ];
@@ -77,10 +76,7 @@
 						//header( "Location: ./index.php?control=user&action=newUserContact" );
 						
 					}else {
-						//error
-						//buscar session = mysql_insert_id
-						
-						echo "malllll";
+						header( "Location: ./index.php?control=index&action=errorBD" );
 
 					}
 					break;
