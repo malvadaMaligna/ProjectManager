@@ -7,7 +7,6 @@
 	float: bottom;
 	margin-top: 40px;
 }
-
 a{
 	color: #CC0066;
 }
@@ -96,6 +95,16 @@ a:hover{
 	border-right: 4px solid #CC0066;
 }
 
+.content-box-article-authors{
+	background-color: #FFE0F0;
+	padding-top: 4%;
+	padding-bottom: 4%;
+	padding-right: 4%;
+	padding-left: 8%;
+	margin-bottom: 10px;
+	border-right: 4px solid #CC0066;
+}
+
 .navbar-margin{
 	padding-left: 15px;
 }
@@ -139,7 +148,6 @@ a:hover{
 .blog-author{
 	float: left;
 }
-
 .blog-content{
 	padding: 3%;
 	margin-bottom: 40px;
@@ -153,6 +161,10 @@ a:hover{
 	margin-bottom: 40px;
 }
 .form-entry-blog{
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+.form-article-entry{
 	margin-top: 40px;
 	margin-bottom: 40px;
 }
@@ -182,6 +194,25 @@ a:hover{
 }
 .float-right{
 	float: right;
+}
+.float-left{
+	float: left;
+}
+.mg-top{
+	margin-top: 20px;
+}
+.mg-bottom{
+	margin-bottom: 20px;
+}
+.float-right{
+	float: right;
+}
+.article-data{
+	margin-bottom: 40px;
+}
+.article-content{
+	padding: 3%;
+	margin-bottom: 40px;
 }
 
 @media (max-width: 768px) { <!-- -->
@@ -243,10 +274,24 @@ a:hover{
 	}
 }
 @media (min-width: 992px ) and (max-width: 1200px ) { 
+	.article-type{
+	float: right;
+	width: 350px;
+	margin-left: 790px;
+	
+	}
+	.article-title{
+	width: 500px;
+	}
 	.blog-usr{
 	margin-top: 42%;
 	}
-	
+	.project-users{
+	margin-top: 70px;
+	}
+	.article-usr{
+	margin-top: 42%;
+	}
 	.left-panel-1{
 		margin-top: 40px;
 		width: 67%;
@@ -277,8 +322,22 @@ a:hover{
 		margin-top: 40px;
 	}
 }
-@media (min-width: 1200px ) {  
+@media (min-width: 1200px ) { 
+	.article-type{
+	float: right;
+	width: 350px;
+	margin-left: 790px;
+	}
+	.article-title{
+	width: 500px;
+	}
 	.blog-usr{
+	margin-top: 42%;
+	}
+	.project-users{
+	margin-top: 70px;
+	}
+	.article-usr{
 	margin-top: 42%;
 	}
 	.left-panel-1{

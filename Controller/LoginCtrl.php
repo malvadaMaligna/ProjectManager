@@ -11,10 +11,10 @@
 						$content = file_get_contents( "./View/Login.html" );
 						$footer = file_get_contents( "./View/Footer.html" );
 						
-						$navbarContent = "You are not logged in";
-						$navbarOpt = "<li><a href=\"./index.php?control=login&action=signIn\">Sign In</a></li>";
+						$navbarContent = file_get_contents( "./View/NavBarTemplateLog.html");
 						$header = str_replace( "{user}", $navbarContent , $header );
-						$header = str_replace( "{userOpt}", $navbarOpt , $header );
+						$header = str_replace( "{userOpt}", "" , $header );
+						
 						echo $header;
 						echo $content;
 						echo $footer;
@@ -30,6 +30,8 @@
 						$login = new LoginMdl( $dbCon );
 						$user = $_POST[ "user" ];
 						$passwd = sha1( $_POST[ "passwd" ] );
+						echo $user;
+						echo $passwd;
 						$result = $login -> authenticate( $user );
 						$row = $result -> fetch_row( );	// conviertes el result en un array
 						$key = $row[ 0 ];	//	res del query
@@ -41,11 +43,13 @@
 							//Set data to session
 						}
 						else{
-							//BadLogin
+							echo "bla";
+							//Pantalla BadLogin
 						}
 					}
 					else{
-						//Send to error
+						echo "blu";
+						// Pantalla Send to error
 					}
 					break;
 				case "logOut":

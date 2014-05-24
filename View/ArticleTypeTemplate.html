@@ -1,0 +1,25 @@
+					<div class="container">
+						<div class="c-panel">
+							<form action="./index.php?control=article&action=showProjectArticles&pjtid={pjtid}" class="form-horizontal" role="form-group" method="post">
+								<div class="content-box">
+									<dl class="float-right dl-horizontal">
+										<dt>Type</dt>
+										<dd id="typeArticle" name="typeArticle">{type}</dd>
+									</dl>
+									<h3 id="titleArticle" name="titleArticle" class="text-center">{title}</h3>
+									<div class="article-data">
+										<div class="cleaner"></div>
+										<div class="article-content" id="contentEntryArticle">
+											<div id="auxContent" name="auxContent">{content}</div>
+										</div>
+									</div>
+									<div class="float-right">
+										By <a href="#" >{user}</a>
+									</div>
+								</div>
+								<div class="with-margin-bottom float-right">
+									<button class="btn btn-primary login-button" type="submit">Add Entry</button>
+								</div>
+							</form>
+						</div>
+					</div>

@@ -10,41 +10,31 @@
 					$content = file_get_contents( "./View/MainPage.html" );
 					$footer = file_get_contents( "./View/Footer.html" );
 					
-					if( !isset( $_SESSION[ 'user' ] ) ){
-						$navbarContent = "You are not logged in";
-						$navbarOpt = "<li><a href=\"./index.php?control=login&action=signIn\">Sign In</a></li>";
+					if( !isset( $_SESSION[ "user" ] ) ){
+						$navbarContent = file_get_contents( "./View/NavBarTemplateLog.html");
 						$header = str_replace( "{user}", $navbarContent , $header );
-						$header = str_replace( "{userOpt}", $navbarOpt , $header );
+						$header = str_replace( "{userOpt}", "" , $header );
 					}
 					else{
 						$navbarContent = $_SESSION[ "user" ];
-						$navbarOpt = "<li class=\"dropdown\">
-											<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"><i class=\"glyphicon glyphicon-home\"></i> Home<b class=\"caret\"></b></a>
-											<ul class=\"dropdown-menu\">
-												<li><a href=\"#\"><i class=\"glyphicon glyphicon-user\"></i> Profile</a></li>
-												<li><a href=\"#\"><i class=\"glyphicon glyphicon-book\"></i> Projects</a></li>
-												<li><a href=\"#\"><i class=\"glyphicon glyphicon-wrench\"></i> Settings</a></li>
-												<li class=\"divider\"></li>
-												<li><a href=\"./index.php?control=login&action=logOut\"><i class=\"glyphicon glyphicon-log-out\" ></i> Log out</a></li>
-											</ul>
-										</li>";
+						$navbarOpt = file_get_contents( "./View/NavBarTemplate.html" );
 						$header = str_replace( "{user}", $navbarContent , $header );
 						$header = str_replace( "{userOpt}", $navbarOpt , $header );
 					}
 					
 					//Get the latest blog entry
 					$index = new IndexMdl( $dbCon );
-					$result = $index -> getLastBlogEntry( );
+					$result1 = $index -> getLastBlogEntry( );
 					//TODO validate if result is null
-					if( !( $result -> num_rows ) == 0 ){
-						$row = $result -> fetch_row();
+					if( !( $result1 -> num_rows ) == 0 ){
+						$row = $result1 -> fetch_row();
 						$blogDate = $row[ 0 ];
 						$blogTitle = $row[ 1 ];
 						$blogContent = $row[ 2 ];
 						$blogUser = $row[ 3 ];
 						$blogProyect = $row[ 4 ];
 						
-						$blogEntry = "<h3>".$blogTitle."</h3>";
+						$blogEntry = "<h3 class=\"text-center\">".$blogTitle."</h3>";
 						$blogEntry = $blogEntry."<div class=\"blog-data\"><div class=\"blog-date\"><em>".$blogDate."</em></div><div class=\"blog-author\">By <a href=\"#\">".$blogUser."</a></div></div>";
 						$blogEntry = $blogEntry."<div class=\"cleaner\"></div>";
 						$blogEntry = $blogEntry."<div class=\"blog-content\">".$blogContent."</div>";
@@ -54,7 +44,26 @@
 					else{
 						$content = str_replace( "{blogEntry}", "<h3>There's no data to show</h3>" , $content );
 					}
-					
+					$result2 = $index -> gestLastArticle( );
+					if( !( $result2 -> num_rows ) == 0 ){
+						$row = $result2 -> fetch_row();
+						$articleType = $row[ 4 ];
+						$articleTitle = $row[ 0 ];
+						$articleContent = $row[ 1 ];
+						$author = $row[ 2 ];
+						$articleProyect = $row[ 3 ];
+						
+						$article = "<h3 class=\"text-center\">".$articleTitle."</h3>";
+						$article = $article."<div class=\"\"><div class=\"\"><dl class=\"dl-horizontal\"><dt>Type</dt><dd>".$articleType."<dd></dl></div>";
+						$article = $article."<div class=\"blog-content\">".$articleContent."</div>";
+						$article = $article."<p>Related to <a href=\"#\">".$articleProyect."</a></p>";
+						$article = $article."<div class=\"blog-author\">By <a href=\"#\">".$author."</a></div></div>";
+						$article = $article."<div class=\"cleaner\"></div>";
+						$content = str_replace( "{wikiArticle}", $article , $content );
+					}
+					else{
+						$content = str_replace( "{wikiArticle}", "<h3>There's no data to show</h3>" , $content );
+					}
 					echo $header;
 					echo $content;
 					echo $footer;

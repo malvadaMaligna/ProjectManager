@@ -1,0 +1,28 @@
+		<div class="container">
+			<div class="general-info">
+				<h2>Article Entry</h2>
+				<p>Here you can add a new article for your project</p>
+			</div>
+			<form action="./index.php?control=article&action=previewArticle&pjtid={pjtid}" class="form-article-entry form-horizontal" role="form-group" method="post">
+				<div class="form-horizontal">
+					<div class="article-type general-info">
+						<label>Article Type: </label>
+						<select class="form-control" id="typeArticle" name="typeArticle">
+							<option value="">Select item</option>
+							{ArticleType}
+						</select>
+					</div>
+				</div>
+				<div class="form-horizontal">
+					<label class="register-label">Title:</label>
+					<input type="text" class="form-control article-title mg-bottom" name="title" id="title"  placeholder="Title here...">
+				</div>
+				<div class="form-horizontal mg-bottom">
+					<label>Entry Edition</label>
+					<textarea class="form-control" rows="20" name="textAreaContent" id="textAreaContent" ></textarea>
+				</div>
+			<div class="with-margin-bottom">
+				<button class="btn btn-primary login-button" type="submit">Preview</button>
+			</div>
+			</form>
+		</div>

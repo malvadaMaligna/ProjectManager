@@ -29,6 +29,14 @@
 			require_once './Controller/UserCtrl.php';
 			$user = new UserCtrl();
 			$user -> run( $dbCon );
+		case "article":
+			require_once './Controller/ArticleCtrl.php';
+			$article = new ArticleCtrl();
+			$article -> run( $dbCon );
+		case "project":
+			require_once './Controller/ProjectCtrl.php';
+			$project = new ProjectCtrl();
+			$project -> run( $dbCon );
 		default:
 			//Send to main page
 	}

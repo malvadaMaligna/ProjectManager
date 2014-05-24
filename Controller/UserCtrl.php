@@ -10,6 +10,8 @@
 					$content = file_get_contents( "./View/UserRegister.html" );
 					$footer = file_get_contents( "./View/Footer.html" );
 					
+					$header = str_replace( "{user}", "" , $header );
+					
 					echo $header;
 					echo $content;
 					echo $footer;
@@ -51,6 +53,8 @@
 					$header = file_get_contents( "./View/Header.html" );
 					$content = file_get_contents( "./View/UserContactRegister.html" );
 					$footer = file_get_contents( "./View/Footer.html" );
+					
+					$header = str_replace( "{user}", "" , $header );
 						
 					echo $header;
 					echo $content;
@@ -71,9 +75,8 @@
 						
 						$user = new UserMdl($dbCon);
 						$result = $user -> setUserContact( $cel, $fb, $git, $google, $tw, $idUser );
-
-						//TODO
-						//header( "Location: ./index.php?control=user&action=newUserContact" );
+						$_SESSION[ "user" ] = $user -> getUser( $_SESSION[ "idUser" ]) -> fetch_row( )[0];
+						header( "Location: ./index.php?control=index&action=index" );
 						
 					}else {
 						header( "Location: ./index.php?control=index&action=errorBD" );
