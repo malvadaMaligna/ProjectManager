@@ -1,0 +1,61 @@
+		<div class="container">
+			<div class="dead-space-user-profile"></div>
+			<div class="c-panel">
+				<form action="./index.php?control=user&action=updateProfile" role="form" method="post">
+					<h2 class="u-profile">Update your Profile</h2>
+					<div class="">
+						<img class="img-logo" src="./www/img/logo.png">
+					</div>
+					<div class="user-profile">
+						<fieldset>
+							<legend class="register-legend"><h3 class="">User Data</h3></legend>
+							<div class="form-horizontal">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Nick Name:</label>
+									<div class="col-sm-10">
+      									<input type="text" class="form-control"  name="name" id="name" placeholder="New nick name" required>
+  									  </div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">E-mail:</label>
+									<div class="col-sm-10">
+      									<input type="text" class="form-control" name="mail" id="mail" placeholder="New E-mail" required>
+  									  </div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Password:</label>
+									<div class="col-sm-10">
+      									<input type="password" class="form-control" name="pswd" id="pswd" placeholder="New Password" required>
+  									  </div>
+								</div>
+							</div>
+						</fieldset>
+						<fieldset>
+							<legend class="register-legend"><h3 class="">User Contact:</h3></legend>
+							<div class="form-horizontal">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Cell Phone:</label>
+									<div class="col-sm-10">
+      									<input type="text" class="form-control"  name="cell" id="cell" placeholder="New Cell Phone" required>
+  									  </div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Facebook:</label>
+									<div class="col-sm-10">
+      									<input type="text" class="form-control" name="fb" id="fb" placeholder="New Facebook" required>
+  									  </div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Twitter:</label>
+									<div class="col-sm-10">
+      									<input type="text" class="form-control" name="tw" id="tw" placeholder="New Twitter" required>
+  									  </div>
+								</div>
+							</div>
+						</fieldset>
+					</div>
+					<div class="cleaner"></div>
+					<button class="btn btn-primary login-button btn-lg ubtn" type="submit">Update</button>
+				</form>
+			</div>
+		</div>

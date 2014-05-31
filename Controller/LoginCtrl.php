@@ -30,8 +30,7 @@
 						$login = new LoginMdl( $dbCon );
 						$user = $_POST[ "user" ];
 						$passwd = sha1( $_POST[ "passwd" ] );
-						echo $user;
-						echo $passwd;
+						
 						$result = $login -> authenticate( $user );
 						$row = $result -> fetch_row( );	// conviertes el result en un array
 						$key = $row[ 0 ];	//	res del query
@@ -64,7 +63,13 @@
 					}
 					break;
 				default: 
-					//Send to 404 Error
+					$header = file_get_contents( "./View/Header.html" );
+					$content = file_get_contents( "./View/Error404.html" );
+					$footer = file_get_contents( "./View/Footer.html" );
+						
+					echo $header;
+					echo $content;
+					echo $footer;
 				
 			}
 		}

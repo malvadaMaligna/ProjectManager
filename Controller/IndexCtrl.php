@@ -108,7 +108,13 @@
 					echo $footer;
 					break;
 				default:
-					//Send to 404 Error
+					$header = file_get_contents( "./View/Header.html" );
+					$content = file_get_contents( "./View/Error404.html" );
+					$footer = file_get_contents( "./View/Footer.html" );
+					
+					echo $header;
+					echo $content;
+					echo $footer;
 			} 
 		}
 	}
