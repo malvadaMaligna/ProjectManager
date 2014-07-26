@@ -25,13 +25,22 @@
 			return $result;
 		}
 		
-		public function getProjectsByUser( $idUser ){
+		/*public function getProjectsByUser( $idUser ){
 			$query = "SELECT p.name, p.description, p.startDate, s.status, p.idProject FROM project AS p 
 			INNER JOIN projectstatus AS s ON s.idprojectstatus = p.status 
 			INNER JOIN collaborators AS c ON c.idproject = p.idproject 
 			INNER JOIN user AS u ON u.iduser = c.iduser WHERE u.iduser = $idUser ";
 			$result = $this -> connection -> query( $query ) or die( "DB Error: ProjectMdl.getProjectsByUser: Error " );
 			return $result;
+		}*/
+		public function getProjectsByUser( $idUser ){
+		 $query = "SELECT p.name, p.description, p.startDate, s.status, p.idProject 
+		 FROM collaborators AS c 
+		 INNER JOIN project AS p ON p.idProject = c.idProject 
+		 INNER JOIN projectstatus AS s ON s.idprojectstatus = p.status 
+		 INNER JOIN user AS u ON u.iduser = c.iduser WHERE u.iduser = $idUser ";
+		$result = $this -> connection -> query( $query ) or die( "DB Error: ProjectMdl.getProjectsByUser: Error " );
+		return $result;
 		}
 		
 		public function getCollaboratorsByProjectId( $idProject ){

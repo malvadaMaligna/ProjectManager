@@ -1,7 +1,7 @@
 <?php 
 	$user = "root";
-	$passwd = "root";
+	$passwd = "";
 	$server = "localhost";
-	$dataBase = "ProjectManager";
+	$dataBase = "projectManager";
 
 ?>

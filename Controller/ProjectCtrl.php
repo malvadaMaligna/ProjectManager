@@ -94,15 +94,7 @@
 						$content = str_replace( "{dateStart}", $row1[ 2 ] , $content );
 						$content = str_replace( "{status}", $row1[ 3 ] , $content );
 						$content = str_replace( "{description}", $row1[ 1 ] , $content );
-						/*while( $row1 = $result1 -> fetch_row( ) ){
-							$tmpPro = $proTemplate;
-							$tmpPro = str_replace( "{name}", $row1[ 0 ] , $tmpPro );
-							$tmpPro = str_replace( "{dateStart}", $row1[ 2 ] , $tmpPro );
-							$tmpPro = str_replace( "{status}", $row1[ 3 ] , $tmpPro );
-							$tmpPro = str_replace( "{description}", $row1[ 1 ] , $tmpPro );
-							$pro .= $tmpPro;
-						}*/
-						//$content = str_replace( "{project}", $proTemplate , $content );
+						
 						$content = str_replace( "{pjtid}", $_GET[ "pjtid" ] , $content );
 						echo $header;
 						echo $content;
@@ -232,6 +224,7 @@
 						}
 						
 						$content = str_replace( "{users}", $tempText , $content );
+						$content = str_replace( "{pjtid}", $_GET[ "pjtid" ] , $content );
 						echo $header;
 						echo $content;
 						echo $footer;

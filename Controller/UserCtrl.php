@@ -136,14 +136,18 @@
 				case "profile":
 					if( isset( $_SESSION[ "idUser" ] ) and isset( $_SESSION[ "user" ] ) ){
 						
+						//Get file content
 						$header = file_get_contents( "./View/Header.html" );
 						$content = file_get_contents( "./View/Profile.html" );
 						$footer = file_get_contents( "./View/Footer.html" );
+						
+						//Get variables
 						$navbarContent = $_SESSION[ "user" ];
 						$navbarOpt = file_get_contents( "./View/NavBarTemplate.html" );
 						$header = str_replace( "{user}", $navbarContent , $header );
 						$header = str_replace( "{userOpt}", $navbarOpt , $header );
 						
+						//Get task per user
 						require_once './Model/UserMdl.php';
 						$user = new UserMdl($dbCon);
 						$result1 = $user -> getCountTasksByUser( $_SESSION[ "idUser" ] );
@@ -154,6 +158,7 @@
 							$content = str_replace( "{task}", "0" , $content );
 						}
 						
+						//Get projects per user
 						require_once './Model/ProjectMdl.php';
 						$project = new ProjectMdl( $dbCon );
 						$result2 = $project -> getProjectsByUser( $_SESSION[ "idUser" ] );
@@ -171,6 +176,8 @@
 							$content = str_replace( "{projects}", "<label>You don't collaborate on any project yet</label>" , $content );
 						}
 						
+						
+						//Get last blog
 						$result3 = $user -> getLastBlogEntryByUser( $_SESSION[ "idUser" ] );
 						$tmpTemplate = file_get_contents( "./View/BlogTemplate.html" );
 						if ( !( $result3 -> num_rows ) == 0 ){
@@ -185,6 +192,8 @@
 							$content = str_replace( "{lastEntryBlog}", "<p>You don't have blog entries</p>" , $content );
 						}
 						
+						
+						//Get last article 
 						$result4 = $user -> getLastArticleByUser( $_SESSION[ "idUser" ] );
 						$tmpArticleTemplate = file_get_contents( "./View/ArticleTemplate.html" );
 						if ( !( $result4 -> num_rows ) == 0 ){
@@ -288,16 +297,55 @@
 						header( "Location: ./index.php?control=index&action=errorBD" );
 					}
 				break;
+				case "getCollaboratorsPro":
+					if( isset( $_SESSION[ "idUser" ] ) and isset( $_SESSION[ "user" ] ) ){
+				
+						$header = file_get_contents( "./View/Header.html" );
+						$content = file_get_contents( "./View/AddCollaborators.html" );
+						$footer = file_get_contents( "./View/Footer.html" );
+						$navbarContent = $_SESSION[ "user" ];
+						$navbarOpt = file_get_contents( "./View/NavBarTemplate.html" );
+						$header = str_replace( "{user}", $navbarContent , $header );
+						$header = str_replace( "{userOpt}", $navbarOpt , $header );
+				
+						require_once './Model/UserMdl.php';
+						$user = new UserMdl($dbCon);
+						$result1 = $user -> getUsers( );
+						$tempText = "";
+						$userTmp = "<option value=\"{idUser}\">{nickName}</option>";
+						while ( $row = $result1 -> fetch_row() ){
+							$us = $userTmp;
+							$us = str_replace( "{idUser}", $row[ 0 ] , $us );
+							$us = str_replace( "{nickName}", $row[ 1 ] , $us );
+							$tempText .= $us;
+						}
+				
+						$content = str_replace( "{users}", $tempText , $content );
+				
+						echo $header;
+						echo $content;
+						echo $footer;
+				
+					} else {
+						$navbarContent = "You are not logged in";
+						$navbarOpt = "<li><a href=\"./index.php?control=login&action=signIn\">Sign In</a></li>";
+						$header = str_replace( "{user}", $navbarContent , $header );
+						$header = str_replace( "{userOpt}", $navbarOpt , $header );
+						header( "Location: ./index.php?control=index&action=errorBD" );
+					}
+					break;
 				case "addedCollaborator":
 					if( isset( $_SESSION[ "idUser" ] ) and isset( $_SESSION[ "user" ] ) ){
 						require_once './Model/CollaboratorMdl.php';
 						$rol = 2;
+						$us = $_POST[ "us" ];
 						$collaborator = new CollaboratorMdl( $dbCon );
-						$result2 = $collaborator -> setCollaborator( $_SESSION[ "idProject" ], $_SESSION[ "idUser" ], $rol );
+						$result2 = $collaborator -> setCollaborator( $_SESSION[ "idProject" ], $us, $rol );
 						header( "Location: ./index.php?control=user&action=profile" );
 					} else {
 						header( "Location: ./index.php?control=index&action=errorBD" );
 					}
+				break;
 				default:
 					$header = file_get_contents( "./View/Header.html" );
 					$content = file_get_contents( "./View/Error404.html" );
